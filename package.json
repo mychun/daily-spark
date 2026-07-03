@@ -1,0 +1,42 @@
+{
+  "name": "daily-spark",
+  "version": "1.0.0",
+  "description": "每日激励桌面应用 - 每天屏幕中央弹出激励语句",
+  "main": "electron/main.js",
+  "author": "Daily Spark",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "prebuild": "node scripts/prebuild-clean.js",
+    "build": "electron-builder --win",
+    "build:dir": "electron-builder --win --dir",
+    "icons": "node generate_icons.js"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.dailyspark.app",
+    "productName": "每日激励",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "每日激励"
+    }
+  }
+}

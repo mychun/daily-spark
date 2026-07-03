@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'" />
+  <title>今日激励</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Outfit:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup-shell">
+    <div class="popup-card" id="popupCard">
+      <button class="popup-close" id="btnClose" title="关闭">✕</button>
+      <div class="popup-sparkle">✨</div>
+      <h2 class="popup-title">今日激励</h2>
+      <blockquote class="popup-quote">
+        <span id="popupQuote" class="popup-quote-text">加载中...</span>
+      </blockquote>
+      <p class="popup-author" id="popupAuthor"></p>
+      <button id="btnConfirm" class="popup-btn">收到，加油！💪</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'" />
+  <title>每日激励 · Daily Spark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+  <div class="window-chrome">
+    <header class="titlebar">
+      <div class="titlebar-drag">
+        <span class="titlebar-title">每日激励 · Daily Spark</span>
+      </div>
+      <div class="window-controls">
+        <button type="button" id="btnMinimize" class="win-btn" title="最小化" aria-label="最小化">&#8722;</button>
+        <button type="button" id="btnClose" class="win-btn win-btn-close" title="关闭" aria-label="关闭">&#10005;</button>
+      </div>
+    </header>
+
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">✨</span>
+        <div>
+          <h1>每日激励</h1>
+          <p class="tagline">Daily Spark · 桌面版</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnPreview" class="btn btn-glow" title="预览屏幕中央弹窗">
+          <span class="btn-icon">🔔</span>
+          <span>预览弹窗</span>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <main class="main">
+    <section class="hero-card" id="heroCard">
+      <div class="hero-badge">今日激励</div>
+      <blockquote class="hero-quote">
+        <span id="todayQuote" class="hero-quote-text">加载中...</span>
+      </blockquote>
+      <p class="hero-author" id="todayAuthor"></p>
+      <button id="btnRefresh" class="btn btn-ghost">
+        <span>🎲</span> 换一句
+      </button>
+    </section>
+
+    <section class="card settings-card">
+      <h2 class="card-title">
+        <span class="title-icon">⏰</span> 提醒设置
+      </h2>
+      <div class="settings-row">
+        <label for="remindTime">每日提醒时间</label>
+        <input type="time" id="remindTime" value="09:00" />
+      </div>
+      <div class="settings-row">
+        <label class="toggle-label">
+          <input type="checkbox" id="enableRemind" />
+          <span class="toggle-slider"></span>
+          <span>启用每日屏幕弹窗提醒</span>
+        </label>
+      </div>
+      <div class="settings-row">
+        <label class="toggle-label">
+          <input type="checkbox" id="autoStart" />
+          <span class="toggle-slider"></span>
+          <span>开机自动启动（后台运行）</span>
+        </label>
+      </div>
+      <p class="settings-hint" id="notifyStatus">关闭窗口后应用会在系统托盘后台运行，到点自动弹窗</p>
+    </section>
+
+    <section class="card quotes-card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <span class="title-icon">📚</span> 我的语句库
+          <span class="quote-count" id="quoteCount">0</span>
+        </h2>
+        <div class="card-actions">
+          <button id="btnImport" class="btn btn-outline">
+            <span>📥</span> 导入
+          </button>
+          <button id="btnExport" class="btn btn-outline">
+            <span>📤</span> 导出
+          </button>
+        </div>
+      </div>
+
+      <form id="addForm" class="add-form">
+        <textarea id="newQuote" placeholder="输入一句激励人心的话...（支持 \n 换行）" rows="2" required></textarea>
+        <input type="text" id="newAuthor" placeholder="作者（可选）" />
+        <button type="submit" class="btn btn-primary">
+          <span>➕</span> 添加
+        </button>
+      </form>
+
+      <ul class="quote-list" id="quoteList"></ul>
+      <p class="empty-state" id="emptyState" hidden>还没有语句，添加第一条激励语吧！</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>每天一句，点亮生活 ✨ · 关闭窗口可最小化到托盘</p>
+  </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
