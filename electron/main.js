@@ -35,7 +35,7 @@ let appData = null;
 
 const ICON_PATH = path.join(__dirname, "..", "assets", "icon.png");
 const POPUP_WIDTH = 620;
-const POPUP_MIN_HEIGHT = 280;
+const POPUP_MIN_HEIGHT = 360;
 const POPUP_SCREEN_MARGIN = 40;
 
 function getPreloadPath() {
@@ -104,9 +104,12 @@ function createPopupWindow() {
     return popupWindow;
   }
 
+  const { workArea } = screen.getPrimaryDisplay();
+  const initialHeight = workArea.height - POPUP_SCREEN_MARGIN * 2;
+
   popupWindow = new BrowserWindow({
     width: POPUP_WIDTH,
-    height: POPUP_MIN_HEIGHT,
+    height: initialHeight,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -169,7 +172,7 @@ function showQuotePopup(quote) {
 }
 
 function resizePopupWindow(contentHeight) {
-  if (!popupWindow || popupWindow.isDestroyed()) return;
+  if (!popupWindow || popupWindow.isDestroyed()) return POPUP_MIN_HEIGHT;
 
   const { workArea } = screen.getPrimaryDisplay();
   const maxHeight = workArea.height - POPUP_SCREEN_MARGIN * 2;
@@ -185,6 +188,8 @@ function resizePopupWindow(contentHeight) {
     popupWindow.show();
     popupWindow.focus();
   }
+
+  return height;
 }
 
 function markReminderShown() {
@@ -403,7 +408,7 @@ function setupIPC() {
   ipcMain.handle("get-popup-quote", () => pendingPopupQuote);
 
   ipcMain.handle("resize-popup", (_event, contentHeight) => {
-    resizePopupWindow(contentHeight);
+    return resizePopupWindow(contentHeight);
   });
 
   ipcMain.handle("close-popup", () => {

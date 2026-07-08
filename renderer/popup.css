@@ -29,10 +29,32 @@ html, body {
   -webkit-app-region: drag;
 }
 
+html.popup-overflow,
+body.popup-overflow {
+  height: 100%;
+}
+
+body.popup-overflow .popup-shell {
+  height: 100%;
+}
+
+body.popup-overflow .popup-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body.popup-overflow .popup-quote {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 .popup-card {
   position: relative;
   z-index: 1;
   width: 100%;
+  flex-shrink: 0;
   padding: 2.5rem 2rem 2rem;
   background: #000;
   border-radius: var(--radius);
